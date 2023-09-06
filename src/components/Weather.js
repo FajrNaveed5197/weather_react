@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./weather.css";
@@ -8,7 +8,7 @@ const Weather = () => {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState(null);
 
-  const fetchWeatherData = async () => {
+  const fetchWeatherData = useCallback(async () => {
     try {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=ba57ec457b75f6aaaaecf043ccf102ab`
@@ -17,16 +17,12 @@ const Weather = () => {
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
-  };
+  }, [city]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (city) {
-        await fetchWeatherData();
-      }
-    };
-
-    fetchData();
+    if (city) {
+      fetchWeatherData();
+    }
   }, [city, fetchWeatherData]);
 
   return (
