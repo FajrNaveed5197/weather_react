@@ -26,9 +26,12 @@ const Weather = () => {
   }, [city, fetchWeatherData]);
 
   return (
-    <div className="container main">
+    <div className="container">
       <div className="row">
-        <div className="col-12" style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          className="col-12"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -37,7 +40,7 @@ const Weather = () => {
           >
             <input
               type="text"
-              className="rounded-input" style={{width:"350px"}}
+              className="rounded-input"
               placeholder="Enter Location to see result"
               value={city}
               onChange={(e) => setCity(e.target.value)}
@@ -46,8 +49,8 @@ const Weather = () => {
         </div>
       </div>
 
-      <div className="row mt-5">
-        <div className="col-6 mt-5">
+      <div className="row">
+        <div className="col-6">
           <h4 style={{ display: "flex", justifyContent: "end" }}>
             {weatherData?.name || "..."}
           </h4>
@@ -56,7 +59,15 @@ const Weather = () => {
               {weatherData?.main?.temp ? `${weatherData.main.temp}° F` : "..."}
             </h1>
           </div>
-          <div className="col-6" style={{ writingMode: "vertical-lr", transform: "rotate(180deg)", display: "flex", alignItems: "flex-start" }}>
+          <div
+            className="col-6"
+            style={{
+              writingMode: "vertical-lr",
+              transform: "rotate(180deg)",
+              display: "flex",
+              alignItems: "flex-start",
+            }}
+          >
             <h4 style={{ marginLeft: "60vh" }}>
               {weatherData?.weather && weatherData.weather[0]?.main
                 ? weatherData.weather[0].main
@@ -65,21 +76,47 @@ const Weather = () => {
           </div>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "center", width: "100%", height: "100%", marginTop: "30%" }}>
-          <div className="col-5" style={{ borderRadius: "20px", backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            height: "100%",
+            marginTop: "18%",
+          }}
+        >
+          <div
+            className="col-5"
+            style={{
+              borderRadius: "20px",
+              backgroundColor: "rgba(0, 0, 0, 0.2)",
+            }}
+          >
             <div className="row mt-4" style={{ marginLeft: "5%" }}>
-              <div className="col-4">
-                <h3>{weatherData?.main?.feels_like ? `${weatherData.main.feels_like}° F` : "..."}</h3>
+              <div className="col-lg-4">
+                <h3>
+                  {weatherData?.main?.feels_like
+                    ? `${weatherData.main.feels_like}° F`
+                    : "..."}
+                </h3>
                 <p>Feels Like</p>
               </div>
 
-              <div className="col-4">
-                <h3>{weatherData?.main?.humidity ? `${weatherData.main.humidity}%` : "..."}</h3>
+              <div className="col-lg-4">
+                <h3>
+                  {weatherData?.main?.humidity
+                    ? `${weatherData.main.humidity}%`
+                    : "..."}
+                </h3>
                 <p>Humidity</p>
               </div>
 
-              <div className="col-4">
-                <h3>{weatherData?.wind?.speed ? `${weatherData.wind.speed} MPH` : "..."}</h3>
+              <div className="col-lg-44">
+                <h3>
+                  {weatherData?.wind?.speed
+                    ? `${weatherData.wind.speed} MPH`
+                    : "..."}
+                </h3>
                 <p>Winds</p>
               </div>
             </div>
